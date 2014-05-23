@@ -49,7 +49,7 @@ set :build_dir, 'site'
 
 configure :build do end
 
-``
+```
 
 ## Contributing
 
