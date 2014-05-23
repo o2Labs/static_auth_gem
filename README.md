@@ -31,7 +31,7 @@ Cli::Commands.build_middleman
 #Use auth for site
 use StaticAuth::SinatraAuth
 
-``
+```
 
 You will also need a config.rb file in root dir  
 (Basic middleman config)
