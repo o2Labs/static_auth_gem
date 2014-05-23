@@ -1,10 +1,11 @@
 # StaticAuth
 
 This will attempt to secure your static generated files via github.
-You will need config vars setup:
+You will need to setup:
 
   - GITHUB_KEY
   - GITHUB_SECRET
+  - GITHUB_TEAM_ID (Used to make sure user is part of team)
 
 ## Installation
 
@@ -25,8 +26,14 @@ Or install it yourself as:
 Can put this into your config.ru
 
 ```
-#Build site from source folder
-Cli::Commands.build_middleman
+
+# Setup github config and team
+StaticAuth::Config.github_team_id = ENV['GITHUB_TEAM_ID'].to_i
+StaticAuth::Config.github_key = ENV['GITHUB_KEY']
+StaticAuth::Config.github_secret = ENV['GITHUB_SECRET']
+
+# Build the static site when the app boots
+StaticAuth::Cli::Commands.build_middleman
 
 #Use auth for site
 use StaticAuth::SinatraAuth
@@ -47,7 +54,9 @@ set :images_dir, 'assets/images'
 
 set :build_dir, 'site'
 
-configure :build do end
+configure :build do
+
+end
 
 ```
 
