@@ -11,15 +11,11 @@ You will need to setup:
 
 Add this line to your application's Gemfile:
 
-    gem 'static_auth'
+    gem 'static_auth', git: 'git@github.com:dogfood20/static_auth_gem.git'
 
 And then execute:
 
     $ bundle
-
-Or install it yourself as:
-
-    $ gem install static_auth
 
 ## Usage (Rack based application using TryStatic)
 
