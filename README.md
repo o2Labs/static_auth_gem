@@ -19,7 +19,7 @@ And then execute:
 
 ## Usage (Rack based application using TryStatic)
 
-Can put this into your config.ru
+###Put this into your config.ru
 
 ```
 
@@ -30,6 +30,10 @@ StaticAuth::Config.github_secret = ENV['GITHUB_SECRET']
 
 # Build the static site when the app boots
 StaticAuth::Cli::Commands.build_middleman
+
+# Use session cookies
+use Rack::Session::Cookie, secret: 'YourSecret'
+use Rack::Session::Pool
 
 #Use auth for site
 use StaticAuth::SinatraAuth
