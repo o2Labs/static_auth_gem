@@ -42,7 +42,7 @@ module StaticAuth
     before do
       # Check for session.
       confirmed = session[:confirmed_user]
-      unless request.path_info == callback_path #|| environment == 'development'
+      unless request.path_info == callback_path || environment == 'development'
         return redirect '/auth/github' if confirmed.nil?
       end
       return
