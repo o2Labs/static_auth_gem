@@ -7,11 +7,6 @@ module StaticAuth
     # Enable proper HEAD responses
     use Rack::Head
 
-    # Attempt to auth the request
-    # Don't like the secret in here.
-    use Rack::Session::Cookie, secret: 'dNdnn3o1091241dqefwe'
-    use Rack::Session::Pool
-
     use OmniAuth::Builder do
       provider :github,
                StaticAuth::Config.github_key,
