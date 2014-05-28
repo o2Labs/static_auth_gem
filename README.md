@@ -3,9 +3,12 @@
 This will attempt to secure your static generated files via github.
 You will need to setup:
 
-  - GITHUB_KEY
-  - GITHUB_SECRET
+  - GITHUB_KEY ( in settings/applications with github - Developer applications)
+  - GITHUB_SECRET ( in settings/applications with github - Developer applications)
   - GITHUB_TEAM_ID (Used to make sure user is part of team)
+
+Also in settings/applications with github - Developer applications
+`Authorization callback URL`: http://your.server/auth/github/callback
 
 ## Installation
 
