@@ -21,6 +21,14 @@ module StaticAuth
         )
       end
 
+      def dev_auth_setting
+        StaticAuth::Config.development_auth
+      end
+
+      def dev_auth_set
+        dev_auth_setting == true && environment == 'development'
+      end
+
       def team_id
         StaticAuth::Config.github_team_id
       end
@@ -42,7 +50,7 @@ module StaticAuth
     before do
       # Check for session.
       confirmed = session[:confirmed_user]
-      unless request.path_info == callback_path
+      unless request.path_info == callback_path || dev_auth_set
         return redirect '/auth/github' if confirmed.nil?
       end
       return
