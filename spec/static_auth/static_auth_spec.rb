@@ -33,11 +33,20 @@ describe 'StaticAuth' do
       StaticAuth::SinatraAuth
     end
 
-    it 'should enforce security' do
+    it 'should enforce security when development and set' do
+      StaticAuth::Config.development_auth = true
+      ENV['RACK_ENV'] = 'development'
       get '/'
       last_response.should be_redirect
       follow_redirect!
       last_request.url.should eq('http://example.org/auth/github')
+    end
+
+    it 'should not enforce security when development and not set' do
+      StaticAuth::Config.development_auth = false
+      ENV['RACK_ENV'] = 'development'
+      get '/'
+      last_response.status.should eq(404)
     end
   end
 end
