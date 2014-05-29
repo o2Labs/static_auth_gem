@@ -42,6 +42,15 @@ describe 'StaticAuth' do
       last_request.url.should eq('http://example.org/auth/github')
     end
 
+    it 'should enforce security when production and not set' do
+      StaticAuth::Config.development_auth = false
+      ENV['RACK_ENV'] = 'production'
+      get '/'
+      last_response.should be_redirect
+      follow_redirect!
+      last_request.url.should eq('http://example.org/auth/github')
+    end
+
     it 'should not enforce security when development and not set' do
       StaticAuth::Config.development_auth = false
       ENV['RACK_ENV'] = 'development'

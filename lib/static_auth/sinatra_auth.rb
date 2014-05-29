@@ -26,6 +26,7 @@ module StaticAuth
       end
 
       def dev_auth_set
+        return true if environment == 'production'
         dev_auth_setting == true && environment == 'development'
       end
 
