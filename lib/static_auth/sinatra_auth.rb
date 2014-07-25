@@ -58,6 +58,12 @@ module StaticAuth
     end
 
     get '/auth/github/callback' do
+      return halt(
+        'issue with auth'
+      ) unless env['omniauth.auth'].extra.raw_info.login
+      return halt(
+        'issue with auth'
+      ) unless env['omniauth.auth'].credentials.token
       screen_name = env['omniauth.auth'].extra.raw_info.login
       token = env['omniauth.auth'].credentials.token
       if member?(screen_name, token)
