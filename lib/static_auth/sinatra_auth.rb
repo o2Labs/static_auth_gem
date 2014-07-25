@@ -62,7 +62,7 @@ module StaticAuth
     end
 
     get '/auth/failure' do
-      halt(params[:message])
+      return halt(params[:message])
     end
 
     get '/auth/github/callback' do
