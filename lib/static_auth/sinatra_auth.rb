@@ -46,15 +46,23 @@ module StaticAuth
       def callback_path
         '/auth/github/callback'
       end
+
+      def fail_path
+        '/auth/failure'
+      end
     end
 
     before do
       # Check for session.
       confirmed = session[:confirmed_user]
-      unless request.path_info == callback_path || !dev_auth_set
+      unless request.path_info == (callback_path || fail_path) || !dev_auth_set
         return redirect '/auth/github' if confirmed.nil?
       end
       return
+    end
+
+    get '/auth/failure' do
+      halt(params[:message])
     end
 
     get '/auth/github/callback' do
