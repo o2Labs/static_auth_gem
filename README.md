@@ -22,7 +22,7 @@ And then execute:
 
 ## Usage (Rack based application using TryStatic)
 
-###Put this into your config.ru
+###Example config.ru
 
 ```
 
@@ -34,9 +34,6 @@ StaticAuth::Config.github_secret = ENV['GITHUB_SECRET']
 ## Can use this for running in development without auth
 StaticAuth::Config.development_auth = false
 
-# Build the static site when the app boots
-StaticAuth::Cli::Commands.build_middleman
-
 # Use session cookies
 use Rack::Session::Cookie, secret: 'YourSecret'
 use Rack::Session::Pool
@@ -46,8 +43,19 @@ use StaticAuth::SinatraAuth
 
 ```
 
-You will also need a config.rb file in root dir  
-(Basic middleman config)
+
+###Using MiddleMan?
+
+You will also need to add the below to the config.ru:
+
+```
+
+# Build the static site when the app boots
+StaticAuth::Cli::Commands.build_middleman
+
+```
+
+Create a config.rb file in app root dir.
 
 
 ```

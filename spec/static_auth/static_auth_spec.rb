@@ -2,7 +2,6 @@ require 'spec_helper'
 require 'rack/test'
 
 describe 'StaticAuth' do
-
   context 'When using cli commands (middleman)' do
     before(:each) do
       @middle_man = double('Middleman')

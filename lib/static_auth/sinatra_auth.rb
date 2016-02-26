@@ -74,13 +74,10 @@ module StaticAuth
       ) unless env['omniauth.auth'].credentials.token
       screen_name = env['omniauth.auth'].extra.raw_info.login
       token = env['omniauth.auth'].credentials.token
-      if member?(screen_name, token)
-        session[:confirmed_user] = env['omniauth.auth'].extra.raw_info.login
-        puts "authenticated user: #{screen_name}"
-        redirect '/'
-      else
-        return halt('Not Authorised')
-      end
+      return halt('Not Authorised') unless member?(screen_name, token)
+      session[:confirmed_user] = env['omniauth.auth'].extra.raw_info.login
+      puts "authenticated user: #{screen_name}"
+      redirect '/'
     end
   end
 end
